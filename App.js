@@ -1,10 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import UserNav from './user_side/UserNav';
+import RetailerNav from './retailer_side/RetailerNav';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <UserNav />
     </View>
   );
 }
