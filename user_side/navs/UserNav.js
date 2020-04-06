@@ -17,7 +17,7 @@ export default function UserNav(){
                 <Drawer.Navigator>
                     <Drawer.Screen name='Home' component={Home}/>
                     <Drawer.Screen name='Browse Items' component={CategoryNav}/>
-                    <Drawer.Screen name='Find a Store' component={RetailerList}/>
+                    {/* <Drawer.Screen name='Find a Store' component={RetailerList}/> */}
                     <Drawer.Screen name='My Account' component={Account}/>
                 </Drawer.Navigator>
             </NavigationContainer>

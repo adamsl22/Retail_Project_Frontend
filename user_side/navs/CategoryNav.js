@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import {createStackNavigator} from '@react-navigation/Stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {styles} from '../../styles';
 import Categories from '../lists/Categories';
