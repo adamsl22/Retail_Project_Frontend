@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, Text, Button, StyleSheet, Dimensions} from 'react-native';
+import Map from './Map';
 
 export default class NearbyLocation extends React.Component{
     // state = {
@@ -34,7 +35,17 @@ export default class NearbyLocation extends React.Component{
         return(
             <View>
                 <Text>{this.props.route.params.selected.name}</Text>
+                <Map style={styles.mapWindow}/>
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    mapWindow: {
+      width: Dimensions.get('window').width / 1.4,
+      height: Dimensions.get('window').height / 4,
+      alignSelf: 'center',
+      justifyContent: 'center'
+    }
+});
