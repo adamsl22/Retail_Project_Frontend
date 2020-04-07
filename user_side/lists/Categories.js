@@ -7,7 +7,7 @@ export default class Categories extends React.Component{
     }
 
     componentDidMount(){
-        fetch('localhost:3001/categories')
+        fetch('http://localhost:3001/categories')
         .then(resp => resp.json())
         .then(categories => this.setState({cats: categories}))
     }
@@ -16,7 +16,7 @@ export default class Categories extends React.Component{
         return(
             <View>
                 {this.state.cats.map(cat => {
-                    return <Button title={cat.name} onPress={() => this.props.navigation.navigate(
+                    return <Button title={cat.name} key={cat.id} onPress={() => this.props.navigation.navigate(
                         'SubcategoryNav', {screen: 'Subcategories', params: {selected: cat}}
                     )}  />
                 })}

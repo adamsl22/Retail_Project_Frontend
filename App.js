@@ -4,6 +4,8 @@ import UserNav from './user_side/navs/UserNav';
 import RetailerNav from './retailer_side/RetailerNav';
 
 export default function App() {
+  
+
   return (
     <View style={styles.container}>
       {/* <Text>Hello</Text> */}
