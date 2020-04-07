@@ -1,19 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import UserNav from './user_side/navs/UserNav';
+import RetailerNav from './retailer_side/RetailerNav';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      {/* <Text>Hello</Text> */}
+      <UserNav />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex: 1
   },
 });
