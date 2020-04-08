@@ -3,41 +3,32 @@ import {View, Text, Button, StyleSheet, Dimensions} from 'react-native';
 import Map from './Map';
 
 export default class NearbyLocation extends React.Component{
-    // state = {
-    //     items: [],
-    //     showItem: null,
-    //     retailers: [],
-    //     showItemRetailer: null
-    // }
+    state = {
+        location: null,
+    }
 
-    // componentDidMount(){
-    //     fetch('localhost:3001/items')
-    //     .then(resp => resp.json())
-    //     .then(items => {
-    //         subcatItems = items.filter(item => item.subcategory_id == this.props.route.params.selected.id)
-    //         this.setState({
-    //             items: subcatItems,
-    //             showItem: subcatItems[0]
-    //         })
-    //         fetch('localhost:3001/retailers')
-    //         .then(resp => resp.json())
-    //         .then(retailers => {
-    //             itemRetailer = retailers.filter(retailer => retailer.id == this.state.showItem.retailer_id)
-    //             this.setState({
-    //                 retailers: retailers,
-    //                 showItemRetailer: itemRetailer
-    //             })
-    //         })
-    //     })
-    // }
+    componentDidMount(){
+        fetch('http://localhost:3001/locations')
+        .then(resp => resp.json())
+        .then(locations => {
+            const location = locations.filter(location => location.retailer_id == this.props.route.params.selected.id)[0]
+            this.setState({location})
+        })
+    }
 
     render(){
-        return(
-            <View>
-                <Text>{this.props.route.params.selected.name}</Text>
-                <Map style={styles.mapWindow}/>
-            </View>
-        )
+        if (this.state.location){
+            console.log(this.state.location)
+            return(
+                <View>
+                    <Text style={styles.nameText}>{this.props.route.params.selected.name}</Text>
+                    <Text style={styles.nameText}>{this.state.location.address}</Text>
+                    <Map style={styles.mapWindow} location={this.state.location}/>
+                </View>
+            )
+        } else {
+            return <View><Text>Loading...</Text></View>
+        }
     }
 }
 
@@ -47,5 +38,11 @@ const styles = StyleSheet.create({
       height: Dimensions.get('window').height / 4,
       alignSelf: 'center',
       justifyContent: 'center'
+    },
+    nameText: {
+        padding: 20,
+        fontSize: 30,
+        fontWeight: 'bold',
+        marginLeft: 20
     }
 });

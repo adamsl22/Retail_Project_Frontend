@@ -7,7 +7,7 @@ export default class RetailerList extends React.Component{
     }
 
     componentDidMount(){
-        fetch('localhost:3001/retailers')
+        fetch('http://localhost:3001/retailers')
         .then(resp => resp.json())
         .then(retailers => this.setState({retailers: retailers}))
     }
@@ -16,7 +16,7 @@ export default class RetailerList extends React.Component{
         return(
             <View>
                 {this.state.retailers.map(retailer => {
-                    return <Button title={retailer.name} onPress={() => this.props.navigation.navigate('Nearby Store', {selected: retailer})}  />
+                    return <Button key={retailer.id} title={retailer.name} onPress={() => this.props.navigation.navigate('Nearby Store', {selected: retailer})}  />
                 })}
             </View>
         )
