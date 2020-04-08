@@ -12,7 +12,7 @@ export default class Subcategories extends React.Component{
         .then(resp => resp.json())
         .then(categories => {
             this.setState({category: categories.filter(
-                cat => cat.name === this.props.route.name
+                cat => cat.name === this.props.route.params.selected.name
             )[0]})
             fetch('http://localhost:3001/subcategories')
             .then(resp => resp.json())
