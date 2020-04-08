@@ -3,19 +3,17 @@ import {View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import Categories from '../lists/Categories';
-import SubcategoryNav from './SubcategoryNav';
+import Subcategories from '../lists/Subcategories';
+import Item from '../pages/Item';
 
 const Stack = createStackNavigator();
 
 export default function CategoryNav(){
     return(
-        // <View style={styles.StackNav}>
-        //     <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen name='Categories' component={Categories}/>
-                    <Stack.Screen name='SubcategoryNav' component={SubcategoryNav}/>
-                </Stack.Navigator>
-        //     </NavigationContainer>
-        // </View>
+        <Stack.Navigator>
+            <Stack.Screen name='Categories' component={Categories}/>
+            <Stack.Screen name='Subcategories' component={Subcategories}/>
+            <Stack.Screen name='Item' component={Item}/>
+        </Stack.Navigator>
     )
 }

@@ -17,7 +17,7 @@ export default class Categories extends React.Component{
             <View>
                 {this.state.cats.map(cat => {
                     return <Button title={cat.name} key={cat.id} onPress={() => this.props.navigation.navigate(
-                        'SubcategoryNav', {screen: 'Subcategories', params: {selected: cat}}
+                        'Subcategories', {selected: cat}
                     )}  />
                 })}
             </View>

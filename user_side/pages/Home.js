@@ -7,8 +7,8 @@ export default function Home({navigation}){
             <View style={styles.welcome}>
             <Text style={styles.welcomeText}>Welcome!</Text>
             </View>
-            <Button title="Browse Items" onPress={() => navigation.navigate('Browse Items')} />
-            <Button title="Find a Store" onPress={() => navigation.navigate('Find a Store')} />
+            <Button title="Favorite Items" />
+            <Button title="Favorite Stores" />
             <Button title="My Account" onPress={() => navigation.navigate('My Account')} />
         </View>
     )
