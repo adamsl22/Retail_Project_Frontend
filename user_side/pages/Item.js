@@ -101,7 +101,7 @@ export default class Item extends React.Component{
                                 size => <Picker.Item key={size} label={size} value={size} />
                             )}</Picker>}
                             <Button title='Favorite Item'/>
-                            <Button title='Find a Nearby Store'/>
+                            <Button title='Find a Nearby Store' onPress={() => this.props.navigation.navigate('Nearby Store', {selected: this.state.showItemRetailer})}/>
                         </View>
                     </View>
                 </PanGestureHandler>

@@ -6,36 +6,35 @@ import * as Permissions from 'expo-permissions';
 
 export default class Map extends React.Component {
     state = {
-        location: null,
-        zoom: null,
+        // location: null,
+        zoom: 0.01,
         errorMessage: null,
     };
 
-    async componentDidMount(){
-        let { status } = await Permissions.askAsync(Permissions.LOCATION);
-        if (status !== 'granted') {
-        this.setState({
-            errorMessage: 'Permission to access location was denied',
-        });
-        }
-        let location = await Location.getCurrentPositionAsync({});
-        this.setState({ location, zoom: 0.05 });
-    }
+    // async componentDidMount(){
+    //     let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    //     if (status !== 'granted') {
+    //     this.setState({
+    //         errorMessage: 'Permission to access location was denied',
+    //     });
+    //     }
+    //     let location = await Location.getCurrentPositionAsync({});
+    // }
 
     zoomIn = () => {
-        if (this.state.zoom > 0.01){
-            this.setState(prevState => ({zoom: prevState.zoom - 0.01}))
+        if (this.state.zoom > 0.005){
+            this.setState(prevState => ({zoom: prevState.zoom - 0.005}))
         }
     }
 
     zoomOut = () => {
-        if (this.state.zoom < 0.1){
-            this.setState(prevState => ({zoom: prevState.zoom + 0.01}))
+        if (this.state.zoom < 0.05){
+            this.setState(prevState => ({zoom: prevState.zoom + 0.005}))
         }
     }
   
     render(){
-        if (this.state.location){
+        // if (this.state.location){
         return (
             <View>
                 <View style={styles.zoomRow}>
@@ -45,28 +44,31 @@ export default class Map extends React.Component {
             <MapView
                 style={styles.mapStyle}
                 provider='google'
-                region={{latitude: this.state.location.coords.latitude,
-                longitude: this.state.location.coords.longitude,
+                region={{latitude: this.props.location.latitude,
+                longitude: this.props.location.longitude,
                 latitudeDelta: this.state.zoom,
                 longitudeDelta: this.state.zoom
             }}
             />
             </View>
         );
-        } else {
-            return <View><Text>Enable location to use this feature.</Text></View>
-        }
+    //     } else {
+    //         return <View><Text>Loading...</Text></View>
+    //     }
     }
 }
 
 const styles = StyleSheet.create({
   mapStyle: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height / 1.29,
-    alignSelf: 'flex-end'
+    width: Dimensions.get('window').width / 1.4,
+    height: Dimensions.get('window').height / 4,
+    alignSelf: 'center',
+    justifyContent: 'center'
   },
   zoomRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    width: Dimensions.get('window').width / 1.4,
+    alignSelf: 'center'
   }
 });
