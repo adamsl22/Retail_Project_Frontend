@@ -1,42 +1,79 @@
 import React from 'react';
 import {View, Text, Button, Image, Picker, StyleSheet, Alert} from 'react-native';
 // import images from '../../assets/test_data_images/images';
+import Header from '../../drawer_nav_indicator/Header';
 
-export default class Item extends React.Component{
+export default class FavItems extends React.Component{
     state = {
+        favItems: [],
+        favItem: null,
         items: [],
         itemIndex: 0,
         showItem: null,
         retailers: [],
         showItemRetailer: null,
         showSizeSelection: false,
-        selectedSize: 'Select Size:'
+        selectedSizes: [],
+        selectedSize: null
     }
 
     componentDidMount(){
-        fetch('http://localhost:3001/items')
+        fetch('http://localhost:3001/favorite_items')
         .then(resp => resp.json())
-        .then(items => {
-            const subcatItems = items.filter(item => item.subcategory_id == this.props.route.params.selected.id)
+        .then(favItems => {
+            const userFavItems = favItems.filter(item => item.user_id == this.props.route.params.user)
+            const selectedSizes = userFavItems.map(item => item.selected_size)
             this.setState({
-                items: subcatItems,
-                showItem: subcatItems[0]
+                favItems: userFavItems,
+                favItem: userFavItems[0],
+                selectedSizes,
+                selectedSize: selectedSizes[0]
             })
-            fetch('http://localhost:3001/retailers')
+            fetch('http://localhost:3001/items')
             .then(resp => resp.json())
-            .then(retailers => {
-                const itemRetailer = retailers.filter(retailer => retailer.id == this.state.showItem.retailer_id)[0]
+            .then(items => {
+                const userItems = items.filter(item => userFavItems.map(favItem => favItem.item_id).includes(item.id))
                 this.setState({
-                    retailers: retailers,
-                    showItemRetailer: itemRetailer
+                    items: userItems,
+                    showItem: userItems[0]
+                })
+                fetch('http://localhost:3001/retailers')
+                .then(resp => resp.json())
+                .then(retailers => {
+                    const itemRetailer = retailers.filter(retailer => retailer.id == this.state.showItem.retailer_id)[0]
+                    this.setState({
+                        retailers: retailers,
+                        showItemRetailer: itemRetailer
+                    })
                 })
             })
         })
     }
 
     selectSize = (size) => {
-        this.setState({selectedSize: `Selected Size: ${size}`})
-        this.toggleSizeSelector()
+        const selectedSize = `Selected Size: ${size}`
+        fetch(`http://localhost:3001/favorite_items/${this.state.favItem.id}`,{
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                accept: 'application/json'
+            },
+            body: JSON.stringify({selected_size: selectedSize})
+        })
+        .then(resp => resp.json())
+        .then(
+            fetch('http://localhost:3001/favorite_items')
+            .then(resp => resp.json())
+            .then(favItems => {
+                const userFavItems = favItems.filter(item => item.user_id == this.props.route.params.user)
+                const selectedSizes = userFavItems.map(item => item.selected_size)
+                this.setState({
+                    selectedSizes,
+                    selectedSize
+                })
+                this.toggleSizeSelector()
+            })
+        )
     }
 
     toggleSizeSelector = () => {
@@ -53,6 +90,8 @@ export default class Item extends React.Component{
             this.setState({
                 itemIndex: finalIndex,
                 showItem: newItem,
+                favItem: this.state.favItems[finalIndex],
+                selectedSize: this.state.selectedSizes[finalIndex],
                 showItemRetailer: itemRetailer
             })
         } else {
@@ -64,6 +103,8 @@ export default class Item extends React.Component{
             this.setState({
                 itemIndex: newIndex,
                 showItem: newItem,
+                favItem: this.state.favItems[newIndex],
+                selectedSize: this.state.selectedSizes[newIndex],
                 showItemRetailer: itemRetailer
             })
         }
@@ -79,6 +120,8 @@ export default class Item extends React.Component{
             this.setState({
                 itemIndex: 0,
                 showItem: newItem,
+                favItem: this.state.favItems[0],
+                selectedSize: this.state.selectedSizes[0],
                 showItemRetailer: itemRetailer
             })
         } else {
@@ -90,35 +133,28 @@ export default class Item extends React.Component{
             this.setState({
                 itemIndex: newIndex,
                 showItem: newItem,
+                favItem: this.state.favItems[newIndex],
+                selectedSize: this.state.selectedSizes[newIndex],
                 showItemRetailer: itemRetailer
             })
         }
     }
 
-    favoriteItem = () => {
-        let data
-        if (this.state.selectedSize.split(" ")[2]) {
-            data = {
-                selected_size: this.state.selectedSize,
-                user_id: this.props.route.params.user,
-                item_id: this.state.showItem.id
-            }
-        } else {
-            data = {
-                user_id: this.props.route.params.user,
-                item_id: this.state.showItem.id
-            }
-        }
-        fetch('http://localhost:3001/favorite_items',{
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-                accept: 'application/json'
-            },
-            body: JSON.stringify(data)
+    unfavorite = () => {
+        fetch(`http://localhost:3001/favorite_items/${this.state.favItem.id}`,{method: 'DELETE'})
+        const newFavs = this.state.favItems.filter(favItem => favItem.id !== this.state.favItem.id)
+        const newItem = this.state.items[0]
+        const itemRetailer = this.state.retailers.filter(
+            retailer => retailer.id == newItem.retailer_id
+        )[0]
+        this.setState({
+            favItems: newFavs,
+            itemIndex: 0,
+            showItem: newItem,
+            favItem: this.state.favItems[0],
+            selectedSize: this.state.selectedSizes[0],
+            showItemRetailer: itemRetailer
         })
-        .then(resp => resp.json())
-        .then(Alert.alert('Item added to favorites.'))
     }
 
     render(){
@@ -126,6 +162,7 @@ export default class Item extends React.Component{
             // console.log(images[this.state.showItem.name])
             return(
                 <View>
+                    <Header />
                     <View style={styles.row}>
                         <Button title='Previous Item' onPress={this.prevItem}/>
                         <Button title='Next Item' onPress={this.nextItem}/>
@@ -135,15 +172,16 @@ export default class Item extends React.Component{
                     {/* <Image source={images[this.state.showItem.name]} style={styles.image}/> */}
                     <View style={styles.productInfo}>
                         <Text style={styles.infoText}>{this.state.showItem.price}</Text>
-                        <Button title={this.state.selectedSize} onPress={this.toggleSizeSelector}/>
+                        <Text style={styles.infoText}>{this.state.selectedSize}</Text>
+                        <Button title='Change Size?' onPress={this.toggleSizeSelector}/>
                         {this.state.showSizeSelection && <Picker
                             selectedValue={this.state.selectedSize}
                             onValueChange={(itemValue, itemIndex) => this.selectSize(itemValue)}
                         >{this.state.showItem.sizes.split(",").map(
                             size => <Picker.Item key={size} label={size} value={size} />
                         )}</Picker>}
-                        <Button title='Favorite Item' onPress={this.favoriteItem}/>
                         <Button title='Find a Nearby Store' onPress={() => this.props.navigation.navigate('Nearby Store', {selected: this.state.showItemRetailer})}/>
+                        <Button title='Remove from Favorites' onPress={this.unfavorite}/>
                     </View>
                 </View>
             )
@@ -154,6 +192,9 @@ export default class Item extends React.Component{
 }
 
 const styles = StyleSheet.create({
+    favItems: {
+        paddingTop: 20
+    },
     image: {
         height: 200,
         width: 200
@@ -174,6 +215,7 @@ const styles = StyleSheet.create({
     },
     row: {
       flexDirection: 'row',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      paddingTop: 30
     }
 })

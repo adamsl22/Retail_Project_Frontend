@@ -1,13 +1,15 @@
 import React from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
+import Header from '../../drawer_nav_indicator/Header';
 
 export default function Home({navigation}){
     return(
         <View>
+            <Header />
             <View style={styles.welcome}>
             <Text style={styles.welcomeText}>Welcome!</Text>
             </View>
-            <Button title="Favorite Items" />
+            <Button title="Favorite Items" onPress={() => navigation.navigate('Favorite Items')} />
             <Button title="Favorite Stores" />
             <Button title="My Account" onPress={() => navigation.navigate('My Account')} />
         </View>
