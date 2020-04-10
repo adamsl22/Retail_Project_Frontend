@@ -17,7 +17,7 @@ export default class Subcategories extends React.Component{
             fetch('http://localhost:3001/subcategories')
             .then(resp => resp.json())
             .then(subcategories => {
-                catSubcats = subcategories.filter(subcat => subcat.category_id == this.state.category.id)
+                const catSubcats = subcategories.filter(subcat => subcat.category_id == this.state.category.id)
                 this.setState({subcats: catSubcats})
             })
         })
@@ -27,7 +27,9 @@ export default class Subcategories extends React.Component{
         return(
             <View>
                 {this.state.subcats.map(subcat => {
-                    return <Button title={subcat.name} key={subcat.id} onPress={() => this.props.navigation.navigate('Item', {selected: subcat})}  />
+                    return <Button title={subcat.name} key={subcat.id} onPress={
+                        () => this.props.navigation.navigate('Item', {selected: subcat, user: this.props.route.params.user})
+                    }/>
                 })}
             </View>
         )

@@ -3,15 +3,19 @@ import { StyleSheet, Text, View } from 'react-native';
 import UserNav from './user_side/navs/UserNav';
 import RetailerNav from './retailer_side/RetailerNav';
 
-export default function App() {
-  
+export default class App extends React.Component {
+  state = {
+    user_id: 1
+  }
 
-  return (
-    <View style={styles.container}>
-      {/* <Text>Hello</Text> */}
-      <UserNav />
-    </View>
-  );
+  render(){
+    return (
+      <View style={styles.container}>
+        {/* <Text>Hello</Text> */}
+        <UserNav user={this.state.user_id}/>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

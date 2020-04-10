@@ -18,7 +18,6 @@ export default class NearbyLocation extends React.Component{
 
     render(){
         if (this.state.location){
-            console.log(this.state.location)
             return(
                 <View>
                     <Text style={styles.nameText}>{this.props.route.params.selected.name}</Text>

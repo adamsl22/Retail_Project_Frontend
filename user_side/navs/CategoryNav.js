@@ -9,10 +9,10 @@ import NearbyLocation from '../pages/NearbyLocation';
 
 const Stack = createStackNavigator();
 
-export default function CategoryNav(){
+export default function CategoryNav(props){
     return(
         <Stack.Navigator>
-            <Stack.Screen name='Categories' component={Categories}/>
+            <Stack.Screen name='Categories' component={Categories} initialParams={{user: props.route.params.user}}/>
             <Stack.Screen name='Subcategories' component={Subcategories}/>
             <Stack.Screen name='Item' component={Item}/>
             <Stack.Screen name='Nearby Store' component={NearbyLocation}/>
