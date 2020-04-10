@@ -7,8 +7,6 @@ export default class Item extends React.Component{
         items: [],
         itemIndex: 0,
         showItem: null,
-        retailers: [],
-        showItemRetailer: null,
         showSizeSelection: false,
         selectedSize: 'Select Size:'
     }
@@ -21,15 +19,6 @@ export default class Item extends React.Component{
             this.setState({
                 items: subcatItems,
                 showItem: subcatItems[0]
-            })
-            fetch('http://localhost:3001/retailers')
-            .then(resp => resp.json())
-            .then(retailers => {
-                const itemRetailer = retailers.filter(retailer => retailer.id == this.state.showItem.retailer_id)[0]
-                this.setState({
-                    retailers: retailers,
-                    showItemRetailer: itemRetailer
-                })
             })
         })
     }
@@ -46,25 +35,15 @@ export default class Item extends React.Component{
     prevItem = () => {
         const finalIndex = this.state.items.length - 1
         if (this.state.itemIndex === 0){
-            const newItem = this.state.items[finalIndex]
-            const itemRetailer = this.state.retailers.filter(
-                retailer => retailer.id == newItem.retailer_id
-            )[0]
             this.setState({
                 itemIndex: finalIndex,
-                showItem: newItem,
-                showItemRetailer: itemRetailer
+                showItem: this.state.items[finalIndex]
             })
         } else {
             const newIndex = this.state.itemIndex - 1
-            const newItem = this.state.items[newIndex]
-            const itemRetailer = this.state.retailers.filter(
-                retailer => retailer.id == newItem.retailer_id
-            )[0]
             this.setState({
                 itemIndex: newIndex,
-                showItem: newItem,
-                showItemRetailer: itemRetailer
+                showItem: this.state.items[newIndex]
             })
         }
     }
@@ -72,25 +51,15 @@ export default class Item extends React.Component{
     nextItem = () => {
         const finalIndex = this.state.items.length - 1
         if (this.state.itemIndex === finalIndex){
-            const newItem = this.state.items[0]
-            const itemRetailer = this.state.retailers.filter(
-                retailer => retailer.id == newItem.retailer_id
-            )[0]
             this.setState({
                 itemIndex: 0,
-                showItem: newItem,
-                showItemRetailer: itemRetailer
+                showItem: this.state.items[0]
             })
         } else {
             const newIndex = this.state.itemIndex + 1
-            const newItem = this.state.items[newIndex]
-            const itemRetailer = this.state.retailers.filter(
-                retailer => retailer.id == newItem.retailer_id
-            )[0]
             this.setState({
                 itemIndex: newIndex,
-                showItem: newItem,
-                showItemRetailer: itemRetailer
+                showItem: this.state.items[newIndex]
             })
         }
     }
@@ -122,7 +91,7 @@ export default class Item extends React.Component{
     }
 
     render(){
-        if(this.state.showItemRetailer){
+        if(this.state.showItem){
             // console.log(images[this.state.showItem.name])
             return(
                 <View>
@@ -130,7 +99,7 @@ export default class Item extends React.Component{
                         <Button title='Previous Item' onPress={this.prevItem}/>
                         <Button title='Next Item' onPress={this.nextItem}/>
                     </View>
-                    <Text style={styles.nameText}>{this.state.showItemRetailer.name}</Text>
+                    <Text style={styles.nameText}>{this.state.showItem.retailer.name}</Text>
                     <Text style={styles.nameText}>{this.state.showItem.name}</Text>
                     {/* <Image source={images[this.state.showItem.name]} style={styles.image}/> */}
                     <View style={styles.productInfo}>
