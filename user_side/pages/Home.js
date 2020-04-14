@@ -9,9 +9,9 @@ export default function Home({navigation}){
             <View style={styles.welcome}>
             <Text style={styles.welcomeText}>Welcome!</Text>
             </View>
-            <Button title="Favorite Items" onPress={() => navigation.navigate('Favorite Items')} />
-            <Button title="Favorite Stores" />
-            <Button title="My Account" onPress={() => navigation.navigate('My Account')} />
+            <Button title="Favorite Items" onPress={() => navigation.navigate('Favorite Items')}/>
+            <Button title="Favorite Stores" onPress={() => navigation.navigate('Favorite Stores')}/>
+            <Button title="My Account" onPress={() => navigation.navigate('My Account')}/>
         </View>
     )
 }

@@ -16,6 +16,22 @@ export default class NearbyLocation extends React.Component{
         })
     }
 
+    favoriteItem = () => {
+        fetch('http://localhost:3001/favorite_stores',{
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                accept: 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: this.props.route.params.user,
+                location_id: this.state.location.id
+            })
+        })
+        .then(resp => resp.json())
+        .then(Alert.alert('Store added to favorites.'))
+    }
+
     render(){
         if (this.state.location){
             return(
@@ -23,6 +39,13 @@ export default class NearbyLocation extends React.Component{
                     <Text style={styles.nameText}>{this.props.route.params.selected.name}</Text>
                     <Text style={styles.nameText}>{this.state.location.address}</Text>
                     <Map style={styles.mapWindow} location={this.state.location}/>
+                    <Button title='View Store Catalogue' onPress={
+                        () => this.props.navigation.navigate('StoreCatalogue', {
+                            selected: this.state.location.retailer,
+                            user: this.props.route.params.user
+                        })
+                    }/>
+                    <Button title='Favorite Store' onPress={this.favoriteStore}/>
                 </View>
             )
         } else {
