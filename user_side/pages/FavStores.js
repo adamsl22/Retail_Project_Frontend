@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Button, StyleSheet, Dimensions} from 'react-native';
 import Map from './Map';
+import Header from '../../drawer_nav_indicator/Header';
 
 export default class FavStores extends React.Component{
     state = {
@@ -67,20 +68,25 @@ export default class FavStores extends React.Component{
         if (this.state.favStore){
             return(
                 <View>
+                    <Header />
                     <View style={styles.row}>
                         <Button title='Previous Store' onPress={this.prevStore}/>
                         <Button title='Next Store' onPress={this.nextStore}/>
                     </View>
                     <Text style={styles.nameText}>{this.state.favStore.location.retailer.name}</Text>
                     <Text style={styles.nameText}>{this.state.favStore.location.address}</Text>
-                    <Map style={styles.mapWindow} location={this.state.favStore.location}/>
-                    <Button title='View Store Catalogue' onPress={
-                        () => this.props.navigation.navigate('StoreCatalogue', {
-                            selected: this.state.favStore.location.retailer,
-                            user: this.props.route.params.user
-                        })
-                    }/>
-                    <Button title='Remove from Favorites' onPress={this.unfavorite}/>
+                    <View style={styles.mapArea}>
+                        <Map style={styles.mapWindow} location={this.state.favStore.location}/>
+                    </View>
+                    <View style={styles.buttonArea}>
+                        <Button title='View Store Catalogue' onPress={
+                            () => this.props.navigation.navigate('Store Catalogue', {
+                                selected: this.state.favStore.location.retailer,
+                                user: this.props.route.params.user
+                            })
+                        }/>
+                        <Button title='Remove from Favorites' onPress={this.unfavorite}/>
+                    </View>
                 </View>
             )
         } else {
@@ -106,5 +112,11 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-between',
       paddingTop: 30
+    },
+    buttonArea: {
+        padding: 60
+    },
+    mapArea: {
+        padding: 20
     }
 });
