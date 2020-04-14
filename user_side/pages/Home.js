@@ -1,30 +1,40 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import {View, Text, Button, StyleSheet, Dimensions} from 'react-native';
 import Header from '../../drawer_nav_indicator/Header';
 
-export default function Home({navigation}){
+export default function Home(props){
     return(
-        <View>
+        <View style={styles.home}>
             <Header />
             <View style={styles.welcome}>
-            <Text style={styles.welcomeText}>Welcome!</Text>
+                <Text style={styles.titleText}>Retail Rush!</Text>
             </View>
-            <Button title="Favorite Items" onPress={() => navigation.navigate('Favorite Items')}/>
-            <Button title="Favorite Stores" onPress={() => navigation.navigate('Favorite Stores')}/>
-            <Button title="My Account" onPress={() => navigation.navigate('My Account')}/>
+            <View style={styles.buttonSpace}>
+            <Button title="Favorite Items" onPress={() => props.navigation.navigate('Favorite Items')}/>
+            </View>
+            <Button title="Favorite Stores" onPress={() => props.navigation.navigate('Favorite Stores')}/>
+            <View style={styles.buttonSpace}>
+            <Button title="My Account" onPress={() => props.navigation.navigate('My Account')}/>
+            </View>
+            <Button title="Log Out" onPress={props.route.params.logOut}/>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    welcome: {
-        height: 60,
-        padding: 15,
-        marginTop: 50
+    home: {
+        backgroundColor: 'lavender',
+        height: Dimensions.get('window').height
     },
-    welcomeText: {
-        fontSize: 23,
+    titleText: {
+        fontSize: 30,
         textAlign: 'center',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: 'purple',
+        padding: 30,
+        paddingTop: 100
+    },
+    buttonSpace: {
+        padding: 20
     }
 });

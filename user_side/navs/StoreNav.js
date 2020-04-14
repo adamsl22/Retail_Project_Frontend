@@ -1,7 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {NavigationContainer} from '@react-navigation/native';
 import RetailerList from '../lists/RetailerList';
 import NearbyLocation from '../pages/NearbyLocation';
 import StoreCatalogue from '../pages/StoreCatalogue';

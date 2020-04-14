@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 import Home from '../pages/Home';
@@ -12,10 +12,11 @@ import FavStores from '../pages/FavStores';
 const Drawer = createDrawerNavigator();
 
 export default function UserNav(props){
+    console.log(props)
     return(
         <NavigationContainer>
             <Drawer.Navigator drawerStyle={styles.DrawerNav}>
-                <Drawer.Screen name='Home' component={Home} initialParams={{user: props.user}}/>
+                <Drawer.Screen name='Home' component={Home} initialParams={{logOut: props.logOut}}/>
                 <Drawer.Screen name='Browse Items' component={CategoryNav} initialParams={{user: props.user}}/>
                 <Drawer.Screen name='Favorite Items' component={FavItems} initialParams={{user: props.user}}/>
                 <Drawer.Screen name='Find a Store' component={StoreNav} initialParams={{user: props.user}}/>

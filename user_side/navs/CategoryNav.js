@@ -1,7 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {NavigationContainer} from '@react-navigation/native';
 import Categories from '../lists/Categories';
 import Subcategories from '../lists/Subcategories';
 import Item from '../pages/Item';
