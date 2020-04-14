@@ -13,10 +13,11 @@ export default class FavItems extends React.Component{
     }
 
     componentDidMount(){
+        console.log(this.props.route.params)
         fetch('http://localhost:3001/favorite_items')
         .then(resp => resp.json())
         .then(favItems => {
-            const userFavItems = favItems.filter(item => item.user_id == this.props.route.params.user)
+            const userFavItems = favItems.filter(item => item.user_id == this.props.route.params.user.id)
             this.setState({
                 favItems: userFavItems,
                 favItem: userFavItems[0]

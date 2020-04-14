@@ -24,7 +24,7 @@ export default class NearbyLocation extends React.Component{
                 accept: 'application/json'
             },
             body: JSON.stringify({
-                user_id: this.props.route.params.user,
+                user_id: this.props.route.params.user.id,
                 location_id: this.state.location.id
             })
         })

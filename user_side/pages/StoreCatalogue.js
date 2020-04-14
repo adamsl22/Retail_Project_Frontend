@@ -68,12 +68,12 @@ export default class StoreCatalogue extends React.Component{
         if (this.state.selectedSize.split(" ")[2]) {
             data = {
                 selected_size: this.state.selectedSize,
-                user_id: this.props.route.params.user,
+                user_id: this.props.route.params.user.id,
                 item_id: this.state.showItem.id
             }
         } else {
             data = {
-                user_id: this.props.route.params.user,
+                user_id: this.props.route.params.user.id,
                 item_id: this.state.showItem.id
             }
         }

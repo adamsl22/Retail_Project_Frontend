@@ -14,7 +14,7 @@ export default class FavStores extends React.Component{
         fetch('http://localhost:3001/favorite_stores')
         .then(resp => resp.json())
         .then(favStores => {
-            const userFavStores = favStores.filter(store => store.user_id == this.props.route.params.user)
+            const userFavStores = favStores.filter(store => store.user_id == this.props.route.params.user.id)
             this.setState({
                 favStores: userFavStores,
                 favStore: userFavStores[0]
