@@ -19,7 +19,7 @@ export default function UserNav(props){
                 <Drawer.Screen name='Browse Items' component={CategoryNav} initialParams={{user: props.user}}/>
                 <Drawer.Screen name='Favorite Items' component={FavItems} initialParams={{user: props.user}}/>
                 <Drawer.Screen name='Find a Store' component={StoreNav} initialParams={{user: props.user}}/>
-                {/* <Drawer.Screen name='Favorite Stores' component={FavStores} initialParams={{user: props.user}}/> */}
+                <Drawer.Screen name='Favorite Stores' component={FavStores} initialParams={{user: props.user}}/>
                 <Drawer.Screen name='My Account' component={Account} initialParams={{user: props.user}}/>
             </Drawer.Navigator>
         </NavigationContainer>

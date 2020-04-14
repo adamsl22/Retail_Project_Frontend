@@ -1,8 +1,7 @@
 import React from 'react';
 import {View, Text, Button, Image, Picker, StyleSheet, Alert} from 'react-native';
-import ActiveStorageUpload from '../../dev-components/ActiveStorageUpload';
 
-export default class Item extends React.Component{
+export default class StoreCatalogue extends React.Component{
     state = {
         items: [],
         itemIndex: 0,
@@ -15,10 +14,10 @@ export default class Item extends React.Component{
         fetch('http://localhost:3001/items')
         .then(resp => resp.json())
         .then(items => {
-            const subcatItems = items.filter(item => item.subcategory_id == this.props.route.params.selected.id)
+            const retailerItems = items.filter(item => item.retailer_id == this.props.route.params.selected.id)
             this.setState({
-                items: subcatItems,
-                showItem: subcatItems[0]
+                items: retailerItems,
+                showItem: retailerItems[0]
             })
         })
     }
@@ -92,7 +91,6 @@ export default class Item extends React.Component{
 
     render(){
         if(this.state.showItem){
-            // console.log(images[this.state.showItem.name])
             return(
                 <View>
                     <View style={styles.row}>
@@ -102,7 +100,6 @@ export default class Item extends React.Component{
                     <Text style={styles.nameText}>{this.state.showItem.retailer.name}</Text>
                     <Text style={styles.nameText}>{this.state.showItem.name}</Text>
                     {/* <Image source={images[this.state.showItem.name]} style={styles.image}/> */}
-                    <ActiveStorageUpload />
                     <View style={styles.productInfo}>
                         <Text style={styles.infoText}>{this.state.showItem.price}</Text>
                         <Button title={this.state.selectedSize} onPress={this.toggleSizeSelector}/>
@@ -113,7 +110,6 @@ export default class Item extends React.Component{
                             size => <Picker.Item key={size} label={size} value={size} />
                         )}</Picker>}
                         <Button title='Favorite Item' onPress={this.favoriteItem}/>
-                        <Button title='Find a Nearby Store' onPress={() => this.props.navigation.navigate('Nearby Store', {selected: this.state.showItem.retailer})}/>
                     </View>
                 </View>
             )

@@ -94,7 +94,7 @@ export default class FavItems extends React.Component{
                         <Button title='Next Item' onPress={this.nextItem}/>
                     </View>
                     <Text style={styles.nameText}>{this.state.favItem.item.retailer.name}</Text>
-                    <Text style={styles.nameText}>{this.state.selectedSize}</Text>
+                    <Text style={styles.nameText}>{this.state.favItem.item.name}</Text>
                     {/* <Image source={images[this.state.showItem.name]} style={styles.image}/> */}
                     <View style={styles.productInfo}>
                         <Text style={styles.infoText}>{this.state.favItem.item.price}</Text>
