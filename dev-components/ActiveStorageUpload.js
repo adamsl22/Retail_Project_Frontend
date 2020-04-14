@@ -6,7 +6,7 @@ import * as Permissions from 'expo-permissions';
 
 export default class ActiveStorageUpload extends React.Component{
     state = {
-        image: null,
+        image: null
     };
 
     componentDidMount() {
@@ -28,7 +28,7 @@ export default class ActiveStorageUpload extends React.Component{
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
             aspect: [4, 3],
-            quality: 1,
+            quality: 1
             });
             if (!result.cancelled) {
                 this.setState({ image: result.uri });

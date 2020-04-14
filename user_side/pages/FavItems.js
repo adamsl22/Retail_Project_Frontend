@@ -95,7 +95,9 @@ export default class FavItems extends React.Component{
                     </View>
                     <Text style={styles.nameText}>{this.state.favItem.item.retailer.name}</Text>
                     <Text style={styles.nameText}>{this.state.favItem.item.name}</Text>
-                    {/* <Image source={images[this.state.showItem.name]} style={styles.image}/> */}
+                    <View style={styles.imageArea}>
+                        {this.state.favItem.item.image_url && <Image source={{uri: this.state.favItem.item.image_url}} style={styles.image}/>}
+                    </View>
                     <View style={styles.productInfo}>
                         <Text style={styles.infoText}>{this.state.favItem.item.price}</Text>
                         <Text style={styles.infoText}>{this.state.favItem.selected_size}</Text>
@@ -143,5 +145,9 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       justifyContent: 'space-between',
       paddingTop: 30
+    },
+    imageArea: {
+        alignSelf: 'center',
+        padding: 30
     }
 })

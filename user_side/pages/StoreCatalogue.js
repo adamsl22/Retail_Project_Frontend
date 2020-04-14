@@ -99,7 +99,9 @@ export default class StoreCatalogue extends React.Component{
                     </View>
                     <Text style={styles.nameText}>{this.state.showItem.retailer.name}</Text>
                     <Text style={styles.nameText}>{this.state.showItem.name}</Text>
-                    {/* <Image source={images[this.state.showItem.name]} style={styles.image}/> */}
+                    <View style={styles.imageArea}>
+                        {this.state.showItem.image_url && <Image source={{uri: this.state.showItem.image_url}} style={styles.image}/>}
+                    </View>
                     <View style={styles.productInfo}>
                         <Text style={styles.infoText}>{this.state.showItem.price}</Text>
                         <Button title={this.state.selectedSize} onPress={this.toggleSizeSelector}/>
@@ -141,5 +143,9 @@ const styles = StyleSheet.create({
     row: {
       flexDirection: 'row',
       justifyContent: 'space-between'
+    },
+    imageArea: {
+        alignSelf: 'center',
+        padding: 30
     }
 })
