@@ -12,7 +12,6 @@ export default class App extends React.Component {
 
   setUser = (user) => {
     this.setState({user, loggedIn: true})
-    console.log(this.state)
   }
 
   logOut = () => {

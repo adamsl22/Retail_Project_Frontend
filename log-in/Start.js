@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height
     },
     welcomeText: {
-        fontSize: 23,
+        fontSize: 30,
         textAlign: 'center',
         fontWeight: 'bold',
         color: 'purple',
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         paddingTop: 50
     },
     titleText: {
-        fontSize: 30,
+        fontSize: 40,
         textAlign: 'center',
         fontWeight: 'bold',
         color: 'purple',

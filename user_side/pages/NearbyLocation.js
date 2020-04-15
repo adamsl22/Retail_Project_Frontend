@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet, Dimensions} from 'react-native';
+import {View, Text, Button, StyleSheet, Dimensions, Alert} from 'react-native';
 import Map from './Map';
 
 export default class NearbyLocation extends React.Component{
     state = {
-        location: null,
+        location: null
     }
 
     componentDidMount(){
@@ -16,7 +16,7 @@ export default class NearbyLocation extends React.Component{
         })
     }
 
-    favoriteItem = () => {
+    favoriteStore = () => {
         fetch('http://localhost:3001/favorite_stores',{
             method: 'POST',
             headers: {
@@ -35,7 +35,7 @@ export default class NearbyLocation extends React.Component{
     render(){
         if (this.state.location){
             return(
-                <View>
+                <View style={styles.locationPage}>
                     <Text style={styles.nameText}>{this.state.location.retailer.name}</Text>
                     <Text style={styles.nameText}>{this.state.location.address}</Text>
                     <View style={styles.mapArea}>
@@ -76,5 +76,9 @@ const styles = StyleSheet.create({
     },
     mapArea: {
         padding: 20
+    },
+    locationPage: {
+        backgroundColor: 'lavender',
+        height: Dimensions.get('window').height
     }
 });

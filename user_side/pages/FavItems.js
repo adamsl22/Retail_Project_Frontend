@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button, Image, Picker, StyleSheet, Alert} from 'react-native';
+import {View, Text, Button, Image, Picker, StyleSheet, Alert, Dimensions} from 'react-native';
 // import images from '../../assets/test_data_images/images';
 import Header from '../../drawer_nav_indicator/Header';
 
@@ -88,7 +88,7 @@ export default class FavItems extends React.Component{
     render(){
         if(this.state.favItem){
             return(
-                <View>
+                <View style={styles.itemPage}>
                     <Header />
                     <View style={styles.row}>
                         <Button title='Previous Item' onPress={this.prevItem}/>
@@ -150,5 +150,9 @@ const styles = StyleSheet.create({
     imageArea: {
         alignSelf: 'center',
         padding: 30
+    },
+    itemPage: {
+        backgroundColor: 'lavender',
+        height: Dimensions.get('window').height
     }
 })

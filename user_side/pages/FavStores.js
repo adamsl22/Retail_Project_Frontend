@@ -67,7 +67,7 @@ export default class FavStores extends React.Component{
     render(){
         if (this.state.favStore){
             return(
-                <View>
+                <View style={styles.locationPage}>
                     <Header />
                     <View style={styles.row}>
                         <Button title='Previous Store' onPress={this.prevStore}/>
@@ -97,10 +97,10 @@ export default class FavStores extends React.Component{
 
 const styles = StyleSheet.create({
     mapWindow: {
-      width: Dimensions.get('window').width / 1.4,
-      height: Dimensions.get('window').height / 4,
-      alignSelf: 'center',
-      justifyContent: 'center'
+        width: Dimensions.get('window').width / 1.4,
+        height: Dimensions.get('window').height / 4,
+        alignSelf: 'center',
+        justifyContent: 'center'
     },
     nameText: {
         padding: 20,
@@ -109,14 +109,18 @@ const styles = StyleSheet.create({
         marginLeft: 20
     },
     row: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      paddingTop: 30
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingTop: 30
     },
     buttonArea: {
         padding: 60
     },
     mapArea: {
         padding: 20
+    },
+    locationPage: {
+        backgroundColor: 'lavender',
+        height: Dimensions.get('window').height
     }
 });
