@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height
     },
     titleText: {
-        fontSize: 30,
+        fontSize: 35,
         textAlign: 'center',
         fontWeight: 'bold',
         color: 'gold',
