@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button, Image, Picker, StyleSheet, Alert} from 'react-native';
+import {View, Text, Button, Image, Picker, StyleSheet, Alert, Dimensions} from 'react-native';
 
 export default class StoreCatalogue extends React.Component{
     state = {
@@ -92,7 +92,7 @@ export default class StoreCatalogue extends React.Component{
     render(){
         if(this.state.showItem){
             return(
-                <View>
+                <View style={styles.itemPage}>
                     <View style={styles.row}>
                         <Button title='Previous Item' onPress={this.prevItem}/>
                         <Button title='Next Item' onPress={this.nextItem}/>
@@ -147,5 +147,9 @@ const styles = StyleSheet.create({
     imageArea: {
         alignSelf: 'center',
         padding: 30
+    },
+    itemPage: {
+        backgroundColor: 'lavender',
+        height: Dimensions.get('window').height
     }
 })
