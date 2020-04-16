@@ -38,8 +38,8 @@ export default class Map extends React.Component {
         return (
             <View>
                 <View style={styles.zoomRow}>
-                <Button title='Zoom In' onPress={this.zoomIn}/>
-                <Button title='Zoom Out' onPress={this.zoomOut}/>
+                <Button color='purple' title='Zoom In' onPress={this.zoomIn}/>
+                <Button color='purple' title='Zoom Out' onPress={this.zoomOut}/>
                 </View>
             <MapView
                 style={styles.mapStyle}

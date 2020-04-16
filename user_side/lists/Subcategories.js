@@ -27,7 +27,7 @@ export default class Subcategories extends React.Component{
         return(
             <View style={styles.list}>
                 {this.state.subcats.map(subcat => {
-                    return <Button title={subcat.name} key={subcat.id} onPress={
+                    return <Button color='purple' title={subcat.name} key={subcat.id} onPress={
                         () => this.props.navigation.navigate('Item', {selected: subcat, user: this.props.route.params.user})
                     }/>
                 })}

@@ -70,8 +70,8 @@ export default class FavStores extends React.Component{
                 <View style={styles.locationPage}>
                     <Header />
                     <View style={styles.row}>
-                        <Button title='Previous Store' onPress={this.prevStore}/>
-                        <Button title='Next Store' onPress={this.nextStore}/>
+                        <Button color='purple' title='Previous Store' onPress={this.prevStore}/>
+                        <Button color='purple' title='Next Store' onPress={this.nextStore}/>
                     </View>
                     <Text style={styles.nameText}>{this.state.favStore.location.retailer.name}</Text>
                     <Text style={styles.nameText}>{this.state.favStore.location.address}</Text>
@@ -79,13 +79,13 @@ export default class FavStores extends React.Component{
                         <Map style={styles.mapWindow} location={this.state.favStore.location}/>
                     </View>
                     <View style={styles.buttonArea}>
-                        <Button title='View Store Catalogue' onPress={
+                        <Button color='purple' title='View Store Catalogue' onPress={
                             () => this.props.navigation.navigate('Store Catalogue', {
                                 selected: this.state.favStore.location.retailer,
                                 user: this.props.route.params.user
                             })
                         }/>
-                        <Button title='Remove from Favorites' onPress={this.unfavorite}/>
+                        <Button color='purple' title='Remove from Favorites' onPress={this.unfavorite}/>
                     </View>
                 </View>
             )

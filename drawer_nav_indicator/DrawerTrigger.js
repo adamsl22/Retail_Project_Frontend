@@ -7,7 +7,7 @@ export default function DrawerTrigger(props){
     return(
         <View style={styles.trigger}
         onPress={() => {props.navigation.dispatch(DrawerActions.openDrawer())}}>
-            <Ionicons name={'md-arrow-round-forward'} size={30} color='gold' />
+            <Ionicons name={'md-arrow-round-forward'} size={30} color='purple' />
         </View>
     )
 }

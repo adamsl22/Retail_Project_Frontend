@@ -42,13 +42,13 @@ export default class NearbyLocation extends React.Component{
                         <Map style={styles.mapWindow} location={this.state.location}/>
                     </View>
                     <View style={styles.buttonArea}>
-                        <Button  title='View Store Catalogue' onPress={
+                        <Button color='purple' title='View Store Catalogue' onPress={
                             () => this.props.navigation.navigate('Store Catalogue', {
                                 selected: this.state.location.retailer,
                                 user: this.props.route.params.user
                             })
                         }/>
-                        <Button title='Favorite Store' onPress={this.favoriteStore}/>
+                        <Button color='purple' title='Favorite Store' onPress={this.favoriteStore}/>
                     </View>
                 </View>
             )

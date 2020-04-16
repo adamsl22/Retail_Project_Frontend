@@ -34,6 +34,7 @@ export default class RetailerLogin extends React.Component{
                 />
                 <Button
                     title={'Login'}
+                    color='purple'
                     style={styles.input}
                     onPress={this.login}
                 />

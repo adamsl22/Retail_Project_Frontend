@@ -40,6 +40,7 @@ export default class UserSignup extends React.Component{
                     title={'Start!'}
                     style={styles.input}
                     onPress={this.login}
+                    color='purple'
                 />
             </View>
         )
