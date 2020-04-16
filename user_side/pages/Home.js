@@ -10,27 +10,27 @@ export default function Home(props){
                 <Text style={styles.titleText}>Retail Rush!</Text>
             </View>
             <View style={styles.buttonSpace}>
-            <Button color='gold' title="Favorite Items" onPress={() => props.navigation.navigate('Favorite Items')}/>
+            <Button color='purple' title="Favorite Items" onPress={() => props.navigation.navigate('Favorite Items')}/>
             </View>
-            <Button color='gold' title="Favorite Stores" onPress={() => props.navigation.navigate('Favorite Stores')}/>
+            <Button color='purple' title="Favorite Stores" onPress={() => props.navigation.navigate('Favorite Stores')}/>
             <View style={styles.buttonSpace}>
-            <Button color='gold' title="My Account" onPress={() => props.navigation.navigate('My Account')}/>
+            <Button color='purple' title="My Account" onPress={() => props.navigation.navigate('My Account')}/>
             </View>
-            <Button color='gold' title="Log Out" onPress={props.route.params.logOut}/>
+            <Button color='purple' title="Log Out" onPress={props.route.params.logOut}/>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     home: {
-        backgroundColor: 'purple',
+        backgroundColor: 'lavender',
         height: Dimensions.get('window').height
     },
     titleText: {
         fontSize: 35,
         textAlign: 'center',
         fontWeight: 'bold',
-        color: 'gold',
+        color: 'purple',
         padding: 30,
         paddingTop: 100
     },

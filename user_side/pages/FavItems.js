@@ -91,8 +91,8 @@ export default class FavItems extends React.Component{
                 <View style={styles.itemPage}>
                     <Header />
                     <View style={styles.row}>
-                        <Button title='Previous Item' onPress={this.prevItem}/>
-                        <Button title='Next Item' onPress={this.nextItem}/>
+                        <Button color='purple' title='Previous Item' onPress={this.prevItem}/>
+                        <Button color='purple' color='purple' title='Next Item' onPress={this.nextItem}/>
                     </View>
                     <Text style={styles.nameText}>{this.state.favItem.item.retailer.name}</Text>
                     <Text style={styles.nameText}>{this.state.favItem.item.name}</Text>
@@ -102,15 +102,15 @@ export default class FavItems extends React.Component{
                     <View style={styles.productInfo}>
                         <Text style={styles.infoText}>{this.state.favItem.item.price}</Text>
                         <Text style={styles.infoText}>{this.state.favItem.selected_size}</Text>
-                        <Button title='Change Size?' onPress={this.toggleSizeSelector}/>
+                        <Button color='purple' title='Change Size?' onPress={this.toggleSizeSelector}/>
                         {this.state.showSizeSelection && <Picker
                             selectedValue={this.state.selectedSize}
                             onValueChange={(itemValue, itemIndex) => this.selectSize(itemValue)}
                         >{this.state.favItem.item.sizes.split(",").map(
                             size => <Picker.Item key={size} label={size} value={size} />
                         )}</Picker>}
-                        <Button title='Find a Nearby Store' onPress={() => this.props.navigation.navigate('Nearby Store', {selected: this.state.favItem.item.retailer})}/>
-                        <Button title='Remove from Favorites' onPress={this.unfavorite}/>
+                        <Button color='purple' title='Find a Nearby Store' onPress={() => this.props.navigation.navigate('Nearby Store', {selected: this.state.favItem.item.retailer})}/>
+                        <Button color='purple' title='Remove from Favorites' onPress={this.unfavorite}/>
                     </View>
                 </View>
             )

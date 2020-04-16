@@ -94,8 +94,8 @@ export default class StoreCatalogue extends React.Component{
             return(
                 <View style={styles.itemPage}>
                     <View style={styles.row}>
-                        <Button title='Previous Item' onPress={this.prevItem}/>
-                        <Button title='Next Item' onPress={this.nextItem}/>
+                        <Button color='purple' title='Previous Item' onPress={this.prevItem}/>
+                        <Button color='purple' title='Next Item' onPress={this.nextItem}/>
                     </View>
                     <Text style={styles.nameText}>{this.state.showItem.retailer.name}</Text>
                     <Text style={styles.nameText}>{this.state.showItem.name}</Text>
@@ -104,14 +104,14 @@ export default class StoreCatalogue extends React.Component{
                     </View>
                     <View style={styles.productInfo}>
                         <Text style={styles.infoText}>{this.state.showItem.price}</Text>
-                        <Button title={this.state.selectedSize} onPress={this.toggleSizeSelector}/>
+                        <Button color='purple' title={this.state.selectedSize} onPress={this.toggleSizeSelector}/>
                         {this.state.showSizeSelection && <Picker
                             selectedValue={this.state.selectedSize}
                             onValueChange={(itemValue, itemIndex) => this.selectSize(itemValue)}
                         >{this.state.showItem.sizes.split(",").map(
                             size => <Picker.Item key={size} label={size} value={size} />
                         )}</Picker>}
-                        <Button title='Favorite Item' onPress={this.favoriteItem}/>
+                        <Button color='purple' title='Favorite Item' onPress={this.favoriteItem}/>
                     </View>
                 </View>
             )

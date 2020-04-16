@@ -6,11 +6,11 @@ export default function Start({navigation}){
         <View style={styles.startPage}>
             <Text style={styles.welcomeText}>Welcome to</Text>
             <Text style={styles.titleText}>Retail Rush!</Text>
-            <Button title="User Login" onPress={() => navigation.navigate('User Login')}/>
+            <Button color='purple' title="User Login" onPress={() => navigation.navigate('User Login')}/>
             <View style={styles.buttonSpace}>
-            <Button title="User Signup" onPress={() => navigation.navigate('User Signup')}/>
+            <Button color='purple' title="User Signup" onPress={() => navigation.navigate('User Signup')}/>
             </View>
-            <Button title="Retailer Login" onPress={() => navigation.navigate('Retailer Login')}/>
+            <Button color='purple' title="Retailer Login" onPress={() => navigation.navigate('Retailer Login')}/>
         </View>
     )
 }

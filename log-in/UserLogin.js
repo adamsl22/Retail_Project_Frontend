@@ -29,13 +29,14 @@ export default class UserLogin extends React.Component{
                     value={this.state.password}
                     onChangeText={(password) => this.setState({password})}
                     placeholder={'Password'}
-                    secureTextEntry={true}
                     style={styles.input}
+                    secureTextEntry={true}
                 />
                 <Button
                     title={'Login'}
                     style={styles.input}
                     onPress={this.login}
+                    color='purple'
                 />
             </View>
         )

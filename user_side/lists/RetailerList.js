@@ -16,7 +16,7 @@ export default class RetailerList extends React.Component{
         return(
             <View style={styles.list}>
                 {this.state.retailers.map(retailer => {
-                    return <Button key={retailer.id} title={retailer.name} onPress={() => this.props.navigation.navigate('Nearby Store', {selected: retailer, user: this.props.route.params.user})}  />
+                    return <Button color='purple' key={retailer.id} title={retailer.name} onPress={() => this.props.navigation.navigate('Nearby Store', {selected: retailer, user: this.props.route.params.user})}  />
                 })}
             </View>
         );
